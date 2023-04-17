@@ -4,10 +4,7 @@ import FlexComponent from "../components/flex/flex.component";
 import PageBodyComponent from "../components/page-body/page-body.component";
 import { peopleService } from "../services/people.service";
 import IPeople from "../common/interfaces/people.interface";
-import { usePagination } from "../common/hooks/use-pagination.hook";
-import PersonCardTemplate from "../templates/person-card.template";
 import LoadingIndicatorComponent from "../components/loading-indicator/loading-indicator.component";
-import ButtonComponent from "../components/button/button.component";
 import { useParams } from "react-router-dom";
 import IFilm from "../common/interfaces/film.interface";
 import RowComponent from "../components/row/row.component";
@@ -28,6 +25,7 @@ const PeopleDetailView = () => {
         const response = await peopleService.get(peopleId);
         setPerson(response);
       } catch {
+        console.error("Something went wrong");
       } finally {
         setIsFetching(false);
       }
@@ -48,7 +46,9 @@ const PeopleDetailView = () => {
         );
 
         setFilms(films);
-      } catch {}
+      } catch {
+        console.error("Something went wrong");
+      }
     };
 
     fetchFilms();

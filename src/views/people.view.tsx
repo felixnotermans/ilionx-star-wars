@@ -10,6 +10,7 @@ import LoadingIndicatorComponent from "../components/loading-indicator/loading-i
 import ButtonComponent from "../components/button/button.component";
 import { useNavigate } from "react-router-dom";
 import getUrlId from "../common/utils/get-url-id.utils";
+import GridComponent from "../components/grid/grid.component";
 
 const PeopleView = () => {
   const navigate = useNavigate();
@@ -27,11 +28,11 @@ const PeopleView = () => {
     <PageComponent>
       <PageBodyComponent>
         <h1>Characters</h1>
-        <FlexComponent>
+        <GridComponent>
           {items.map((item) => (
             <PersonCardTemplate key={item.name} person={item} onClick={() => handleOnClick(item)} />
           ))}
-        </FlexComponent>
+        </GridComponent>
 
         {isFetching === true && <LoadingIndicatorComponent />}
 

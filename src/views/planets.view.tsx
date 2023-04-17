@@ -14,6 +14,7 @@ import PlanetCardTemplate from "../templates/planet-card.template";
 import { planetService } from "../services/planet.service";
 import IPlanet from "../common/interfaces/planet.interface";
 import InputComponent from "../components/input/input.component";
+import GridComponent from "../components/grid/grid.component";
 
 const PlanetsView = () => {
   const [searchValue, setSearchValue] = useState<string>();
@@ -32,18 +33,20 @@ const PlanetsView = () => {
     <PageComponent>
       <PageBodyComponent>
         <h1>Planets</h1>
-        <FlexComponent flexDirection="column">
-          <FlexComponent justifyContent="flex-start" flex={1}>
-            <InputComponent
-              attributes={{ placeholder: "Search for name", onChange: handleOnInputChange }}
-            />
-          </FlexComponent>
-          <FlexComponent>
-            {items.map((item) => (
-              <PlanetCardTemplate key={item.name} planet={item} />
-            ))}
-          </FlexComponent>
-        </FlexComponent>
+
+        <InputComponent
+          attributes={{
+            placeholder: "Search for name",
+            onChange: handleOnInputChange,
+            style: { marginBottom: 15 }
+          }}
+        />
+
+        <GridComponent>
+          {items.map((item) => (
+            <PlanetCardTemplate key={item.name} planet={item} />
+          ))}
+        </GridComponent>
 
         {isFetching === true && <LoadingIndicatorComponent />}
 
