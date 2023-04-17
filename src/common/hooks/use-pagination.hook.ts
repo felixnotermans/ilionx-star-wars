@@ -44,20 +44,21 @@ export function usePagination<DataType>(props: Props<DataType>): ReturnType<Data
         setIsFetching(true);
 
         const response = await props.fetchMethod(query);
+        const nextPage = response.next?.slice(-1);
+        setNextPage(nextPage);
 
         // merge previously fetched items with response
-        const mergedItems =
-          !nextPage || nextPage === "2"
-            ? response.results
-            : [...items, ...(response.results ?? [])];
+
+        const isFirstItems = query?.page === "1";
+        const mergedItems = isFirstItems
+          ? response.results
+          : [...items, ...(response.results ?? [])];
 
         setItems(mergedItems);
 
         // Update the next url so we can use it when we want to fetch more items
-        console.log("next page", response.next?.slice(-1) ?? undefined);
-        setNextPage(response.next?.slice(-1) ?? undefined);
       } catch (e) {
-        console.log("Something went wrong", e?.toString());
+        console.error("Something went wrong", e?.toString());
       } finally {
         setIsFetching(false);
       }
@@ -84,8 +85,6 @@ export function usePagination<DataType>(props: Props<DataType>): ReturnType<Data
     // for now, just get the last part of the url and use it as input for fetching next items
     fetchItems({ ...props.searchOptions, page: nextPage });
   }, [isFetching, nextPage, fetchItems, props.searchOptions]);
-
-  console.log({ nextPage });
 
   return {
     items,
