@@ -4,6 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Make sure to first run npm i to install the node_modules
+
+### `npm i`
+
+
 In the project directory, you can run:
 
 ### `npm start`
