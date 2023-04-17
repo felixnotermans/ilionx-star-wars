@@ -3,7 +3,7 @@ import IPlanet from "../common/interfaces/planet.interface";
 
 class Service {
   async getAll(query?: { [name: string]: string }): Promise<IPaginatedResponse<IPlanet>> {
-    const apiUrl = new URL([process.env.REACT_APP_API_URL, "people"].join("/"));
+    const apiUrl = new URL([process.env.REACT_APP_API_URL, "planets"].join("/"));
     Object.entries(query ?? {}).forEach((item) => {
       apiUrl.searchParams.append(...item);
     });
