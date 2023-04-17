@@ -8,6 +8,8 @@ Make sure to first run npm i to install the node_modules
 
 ### `npm i`
 
+After that copy the .env.example and create a file named .env inside the root of the project. The content 
+of the .env file should be equal to the .env.example
 
 In the project directory, you can run:
 
