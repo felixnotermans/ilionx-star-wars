@@ -1,0 +1,9 @@
+.flex {
+    display: flex;
+    flex-flow: wrap;
+    gap: var(--spacing-vertical-regular);
+}
+
+.direction-column {
+    flex-direction: column;
+}
