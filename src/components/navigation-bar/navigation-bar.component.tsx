@@ -12,7 +12,7 @@ const NavigationBarComponent = () => {
         <LinkComponent to={"/"} relative={"path"}>
           Characters
         </LinkComponent>
-        <LinkComponent to={"planets"}>Planets</LinkComponent>
+        <LinkComponent to={"/planets"}>Planets</LinkComponent>
       </FlexComponent>
     </div>
   );
